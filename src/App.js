@@ -1,7 +1,10 @@
 import React from 'react';
+import 'materialize-css/dist/css/materialize.min.css';
 import './App.css';
 
 import Table from './Table';
+import Form from './Form';
+import Header from './Header';
 
 class App extends React.Component {
   state = {
@@ -31,12 +34,25 @@ class App extends React.Component {
     });
   };
 
+  addAuthor = (event, author) => {
+    event.preventDefault();
+
+    const { authors } = this.state;
+    this.setState({
+      authors: [...authors, author],
+    });
+  };
+
   render() {
     const { authors } = this.state;
     return (
-      <div className="App">
-        <Table authors={authors} removeAuthor={this.removeAuthor} />
-      </div>
+      <>
+        <Header />
+        <div className="container mb-10">
+          <Table authors={authors} removeAuthor={this.removeAuthor} />
+          <Form addAuthor={this.addAuthor} />
+        </div>
+      </>
     );
   }
 }

@@ -21,7 +21,12 @@ const TBody = ({ authors, removeAuthor }) => {
         <td>{author.book}</td>
         <td>{author.price}</td>
         <td>
-          <button onClick={() => removeAuthor(index)}>Remover</button>
+          <button
+            className="waves-effect waves-light indigo lighten-2 btn"
+            onClick={() => removeAuthor(index)}
+          >
+            Remover
+          </button>
         </td>
       </tr>
     );
@@ -33,7 +38,7 @@ class Table extends React.Component {
   render() {
     const { authors, removeAuthor } = this.props;
     return (
-      <table>
+      <table className="centered highlight">
         <THead />
         <TBody authors={authors} removeAuthor={removeAuthor} />
       </table>
