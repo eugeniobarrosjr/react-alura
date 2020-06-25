@@ -1,26 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Table from './Table';
+
+class App extends React.Component {
+  state = {
+    authors: [
+      {
+        name: 'Paulo',
+        book: 'Java',
+        price: '29.49',
+      },
+      {
+        name: 'Marcos',
+        book: 'Design',
+        price: '28.99',
+      },
+      {
+        name: 'Daniel',
+        book: 'DevOps',
+        price: '29.99',
+      },
+    ],
+  };
+
+  removeAuthor = (authorIndex) => {
+    const { authors } = this.state;
+    this.setState({
+      authors: authors.filter((author, index) => index !== authorIndex),
+    });
+  };
+
+  render() {
+    const { authors } = this.state;
+    return (
+      <div className="App">
+        <Table authors={authors} removeAuthor={this.removeAuthor} />
+      </div>
+    );
+  }
 }
 
 export default App;
