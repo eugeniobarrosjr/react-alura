@@ -5,6 +5,7 @@ import './App.css';
 import Table from './Table';
 import Form from './Form';
 import Header from './Header';
+import PopUp from './PopUp';
 
 class App extends React.Component {
   state = {
@@ -32,15 +33,15 @@ class App extends React.Component {
     this.setState({
       authors: authors.filter((author, index) => index !== authorIndex),
     });
+    PopUp.showMessage('success', 'Autor removido com sucesso');
   };
 
-  addAuthor = (event, author) => {
-    event.preventDefault();
-
+  addAuthor = (author) => {
     const { authors } = this.state;
     this.setState({
       authors: [...authors, author],
     });
+    PopUp.showMessage('success', 'Autor adicionado com sucesso!');
   };
 
   render() {
